@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+.App {
+  text-align: center;
+}
+
+body {
+  position: sticky;
+  background: linear-gradient(
+    90deg,
+    rgba(54, 217, 182, 1) 0%,
+    rgba(32, 152, 126, 1) 43%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid rgba(32, 152, 126, 1);
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  position: relative;
+  top: 20px;
+  left: 200px;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
