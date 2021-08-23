@@ -16,7 +16,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const data = {
-      ...req.body,
+      todo: req.body.todo,
+      status: req.body.status,
       timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
     };
     await Todo.add(data);
@@ -28,7 +29,14 @@ router.post("/", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
   try {
-    await Todo.doc(req.params.id).update(req.body);
+    const document = Todo.doc(req.params.id);
+    let item = await document.get();
+    let oldData = item.data();
+    const payload = {
+      todo: req.body.todo || oldData.todo,
+      status: req.body.status || oldData.status,
+    };
+    await Todo.doc(req.params.id).update(payload);
     return res.status(200).json({ message: "updated" });
   } catch (error) {
     return res.status(500).json({ status: "failed", message: error.message });
